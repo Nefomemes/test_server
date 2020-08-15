@@ -33,7 +33,7 @@ app.get("*", (req, res) => {
 
 client.events.on("eeUpdate", async (result, before, timestamp) => {
 const message = trim(`${client.dir()} have just been updated at ${new Date(timestamp).toUTCString()}. Check them out!`, 2000);
-    await fetch("https://canary.discord.com/api/webhooks/744091292392226817/YFjtL1UytkXwedDLmpTM-VfcsYTyY7WxQqfTqdRte6mJYeud43jHQQemmtc_VgI2kZTs", 
+    await fetch(process.env.WEBHOOK_URL, 
     {
         "method":"post",
         "body":JSON.stringify({content: message}),
